@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interest Calculator</title>
+  </head>
+  <body>
+    <div id="outer">
+      <div class="ac b">Interest Calculator</div>
+      <div id="cover">
+        <form name="intt">
+          <table class="main">
+            <col class="w50" />
+            <col class="w40" />
+            <tr>
+              <td>Principal Amount</td>
+              <td>
+                <input id="principal" />
+                <tr>
+                  <td>Interest Rate</td>
+                  <td>
+                    <input id="rate" />
+                    <tr>
+                      <td>Interest Type</td>
+                      <td>
+                        <select id="itype">
+                          <option value="s">Simple</option>
+                          <option value="c" selected>Compound</option>
+                        </select>
+                        <tr>
+                          <td>Compounding Frequency</td>
+                          <td>
+                            <select id="crate">
+                              <option value="12">Monthly</option>
+                              <option value="4" selected>Quarterly</option>
+                              <option value="2">Half-yearly</option>
+                              <option value="1">Yearly</option>
+                            </select>
+                            <tr>
+                              <td>Period (months)</td>
+                              <td>
+                                <input id="time" />
+                                <tr>
+                                  <td><button type="reset">Reset</button></td>
+                                  <td>
+                                    <button type="button" onclick="interest()">
+                                      Submit
+                                    </button>
+                                    <tr>
+                                      <td>Interest Amount to be paid</td>
+                                      <td><input id="inttamt" /></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Principal Amount</td>
+                                      <td><input id="inttaamt"/></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Total Amount</td>
+                                      <td><input id="inttaaamt"/></td>
+                                    </tr>
+                                    </tr>
+                                  </td>
+                                </tr>
+                              </td>
+                            </tr>
+                          </td>
+                        </tr>
+                      </td>
+                    </tr>
+                  </td>
+                </tr>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+    <div id="author">
+        <em>Gokul Sivakumar</em>
+    </div>
+  </body>
+
+  <style>
+    body{background-color: black;}
+    #outer{width:90%;max-width:600px;background:#fff;margin:0 auto;border-radius: 5%;}
+    #cover{border:5px solid #111;padding:15px 0;border-radius: 5%;}
+    .main{table-layout:fixed;width:94%;border:0;border-collapse:collapse;margin:0 auto}
+    .main td{padding:0 8px;vertical-align:middle;border:0}
+    .main input{width:100%;border:1px solid #ccc;margin:2px 0;padding:0 2%;height:22px;text-align:right}
+    .ac{text-align:center}
+    .b{font-weight:bold}
+    .main select{width:100%;border:1px solid #ccc;margin:2px 0;background:#fff;height:22px}
+    .w50{width:50%}
+    .main button{width:100%;font-weight:bold;margin:3px 0}
+    #author{font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color: tomato;position: fixed;right: 0%;bottom: 0%;border-style: solid;border-color: springgreen;}
+
+   </style>
+
+   <script>
+    function interest()
+        {
+        var principal=document.getElementById('principal').value;
+        var rate=document.getElementById('rate').value;
+        var time=document.getElementById('time').value;
+        var itype=document.getElementById('itype').value;
+        var crate=document.getElementById('crate').value;
+        var time=document.getElementById('time').value;
+        var irate=rate/crate;
+        var inttamt=document.getElementById('inttamt').value;
+        var intaamt=document.getElementById('inttaamt').value;
+        var intaamt=document.getElementById('inttaaamt').value;
+        var decimal=2;
+        if( itype=='c' ){
+            var Interest_Amount = Math.round((document.getElementById('principal').value * Math.pow((1+irate/100),(time/12*crate))*1-principal*1 ) *100)/100;
+            var Principal_Amount = principal;
+            var Total_Amount = parseFloat(Interest_Amount) + parseFloat(Principal_Amount) ;
+            document.getElementById('inttamt').value = Interest_Amount;
+            document.getElementById('inttaamt').value = Principal_Amount;
+            document.getElementById('inttaaamt').value = Total_Amount;
+        }
+        if(itype=='s' ){
+            var Interest_Amount = Math.round(((document.getElementById('principal').value * rate * time/12)/100)*100)/100;
+            var Principal_Amount = principal;
+            var Total_Amount = parseFloat(Interest_Amount) + parseFloat(Principal_Amount);
+            document.getElementById('inttamt').value = Interest_Amount;
+            document.getElementById('inttaamt').value = Principal_Amount;
+            document.getElementById('inttaaamt').value = Total_Amount;
+        }
+        
+        }
+   </script>
+
+</html>
